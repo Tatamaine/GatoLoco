@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {    
+     public int maxHealth = 100;
+     public int currentHealth;
+     public HealthBar healthBar;
+     
      public float Speed;
      public float JumpForce;
 
@@ -16,15 +20,23 @@ public class Movement : MonoBehaviour
      private float Horizontal;
      private Animator Animator;
 
+
     void Start()
     {
         Rigidbody2D = GetComponent<Rigidbody2D>();
         Animator = GetComponent<Animator>();
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
     }
 
     void Update()
     {
         Debug.DrawRay(transform.position, Vector3.down * 5.1f, Color.red);
+
+        if (Input.GetKeyDown(KeyCode.K))
+          {
+              TakeDamage(20);
+          }
 
 
         Animator.SetBool("Running", Horizontal != 0.0f);
@@ -74,6 +86,11 @@ public class Movement : MonoBehaviour
 
            
 
+    }
+
+    void TakeDamage(int damage){
+      currentHealth -= damage;
+      healthBar.SetHealth(currentHealth);
     }
 
     
