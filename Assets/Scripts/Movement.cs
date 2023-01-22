@@ -35,7 +35,7 @@ public class Movement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.K))
           {
-              TakeDamage(20);
+              TakeDamage(10);
           }
 
 
