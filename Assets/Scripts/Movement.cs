@@ -33,10 +33,7 @@ public class Movement : MonoBehaviour
     {
         Debug.DrawRay(transform.position, Vector3.down * 5.1f, Color.red);
 
-        if (Input.GetKeyDown(KeyCode.K))
-          {
-              TakeDamage(10);
-          }
+       
 
 
         Animator.SetBool("Running", Horizontal != 0.0f);
@@ -95,6 +92,8 @@ public class Movement : MonoBehaviour
 
     
 
+    
+
 private void Jump()
 {
      Rigidbody2D.AddForce(Vector2.up * JumpForce);
@@ -131,6 +130,11 @@ private void OnTriggerEnter2D(Collider2D collision)
 
    }
 
+   if (collision.tag == "Pepino")
+   {
+     TakeDamage(50);
+   }
+
 }
 
 private IEnumerator ResetPower()
@@ -152,5 +156,7 @@ private IEnumerator ResetMonster()
    Speed = 6;
 
 }
+
+
 
 }
