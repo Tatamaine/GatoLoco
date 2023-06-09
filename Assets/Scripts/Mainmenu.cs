@@ -17,6 +17,11 @@ public class Mainmenu:MonoBehaviour
     Debug.Log("Quit");
     
  }
+
+ public void button()
+ {
+   SceneManager.LoadScene("button");
+ }
     
 
     

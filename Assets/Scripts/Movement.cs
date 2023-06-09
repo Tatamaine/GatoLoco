@@ -7,6 +7,7 @@ public class Movement : MonoBehaviour
      public int maxHealth = 100;
      public int currentHealth;
      public HealthBar healthBar;
+     public GameManagerScript gameManager;
      
      public float Speed;
      public float JumpForce;
@@ -19,6 +20,7 @@ public class Movement : MonoBehaviour
      private Rigidbody2D Rigidbody2D;
      private float Horizontal;
      private Animator Animator;
+     private bool isDead;
 
 
     void Start()
@@ -32,8 +34,17 @@ public class Movement : MonoBehaviour
     void Update()
     {
         Debug.DrawRay(transform.position, Vector3.down * 5.1f, Color.red);
-
        
+       //If player is dead
+       if(currentHealth <= 0 && !isDead)
+       {
+
+         isDead = true;
+         gameManager.gameOver();
+         Debug.Log("E");
+         gameObject.SetActive(false);
+
+       }
 
 
         Animator.SetBool("Running", Horizontal != 0.0f);
@@ -133,6 +144,13 @@ private void OnTriggerEnter2D(Collider2D collision)
    if (collision.tag == "Pepino")
    {
      TakeDamage(50);
+     Destroy(collision.gameObject);
+   }
+
+   if (collision.tag == "miki")
+   {
+     TakeDamage(-50);
+     Destroy(collision.gameObject);
    }
 
 }
@@ -156,6 +174,8 @@ private IEnumerator ResetMonster()
    Speed = 6;
 
 }
+
+
 
 
 

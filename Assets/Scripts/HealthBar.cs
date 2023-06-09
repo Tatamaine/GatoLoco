@@ -4,9 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
+
 public class HealthBar : MonoBehaviour
 {
     public Slider slider;
+    private Rigidbody2D Rigidbody2D;
 
     public void SetMaxHealth(int health){
         slider.maxValue = health;
@@ -16,4 +18,6 @@ public class HealthBar : MonoBehaviour
     public void SetHealth(int health){
         slider.value = health;
     }
+
+    
 }
